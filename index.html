@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+  </head>
+  <body>
+    <div class="container">
+        
+ 
+    <!-- 导航条 ============================================================开始-->
+        <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+    <!-- 导航条 ============================================================结束-->
+
+    <!-- 表单 ==================================================================开始-->
+  <div class="myCons">
+  <h3>星座运势查询</h3>
+     <form class="form-inline" method="get" action="/search">
+  <div class="form-group">
+    <label for="exampleInputName2">选择星座:</label>
+    <select name="consName" class="form-control" >
+        <option value="白羊座">白羊座</option>
+        <option value="金牛座">金牛座</option>
+        <option value="双子座">双子座</option>
+        <option value="巨蟹座">巨蟹座</option>
+        <option value="狮子座">狮子座</option>
+        <option value="处女座">处女座</option>
+        <option value="天秤座">天秤座</option>
+        <option value="天蝎座">天蝎座</option>
+        <option value="射手座">射手座</option>
+        <option value="摩羯座">摩羯座</option>
+        <option value="水瓶座">水瓶座</option>
+        <option value="双鱼座">双鱼座</option>
+    </select>
+  </div>
+  &nbsp;
+  <div class="form-group">
+    <label for="exampleInputEmail2">运势类型</label>
+    <select name="type" class="form-control">
+        <option value="today">今天</option>
+        <option value="tomorrow">明天</option>
+        <option value="week">本周</option>
+        <option value="nextweek">下周</option>
+        <option value="month">本月</option>
+        <option value="year">今年</option>
+    </select>
+  </div>
+  &nbsp;
+  <button  class="btn  btn-info" id="btn" >查询</button>
+    </form> 
+  </div>
+    <!-- 表单 ==================================================================结束-->
+  <div>
+      <div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">查询结果</h3>
+  </div>
+  <div class="panel-body">
+    <table class="table table-hover">
+        <tbody id="myTbody">
+          
+        </tbody>
+    </table>
+  </div>
+</div>
+  </div>  
+   </div>
+
+   <!-- day模板 -->
+ <script type='text/html' id="tplDay">
+     
+        <tr><td class="tdWidth">星座 : </td> <td>{{ name }} </td> </tr>
+        <tr><td class="tdWidth">时间 : </td> <td>{{ datetime }} </td> </tr>
+        <tr><td class="tdWidth">运势 : </td> <td>{{ summary }} </td> </tr>
+        <tr><td class="tdWidth">速配好友 : </td> <td>{{ QFriend }} </td> </tr>
+  </script> 
+  <!-- 周模板 -->
+  <script type='text/html' id="tplWeek">
+     
+        <tr><td class="tdWidth">星座 : </td> <td>{{ name }} </td> </tr>
+        <tr><td class="tdWidth">时间 : </td> <td>{{ date }} </td> </tr>
+        <tr><td class="tdWidth">健康 : </td> <td>{{ health }} </td> </tr>
+        <tr><td class="tdWidth">工作 : </td> <td>{{ work }} </td> </tr>
+        <tr><td class="tdWidth">恋情 : </td> <td>{{ love }} </td> </tr>
+        <tr><td class="tdWidth">财运 : </td> <td>{{ money }} </td> </tr>
+        <tr><td class="tdWidth">求职 : </td> <td>{{ job }} </td> </tr>
+  </script> 
+  <!-- 月模板 -->
+  <script type='text/html' id="tplMonth">
+     
+        <tr><td class="tdWidth">星座 : </td> <td>{{ name }} </td> </tr>
+        <tr><td class="tdWidth">时间 : </td> <td>{{ month }} 月</td> </tr>
+        <tr><td class="tdWidth">健康 : </td> <td>{{ health }} </td> </tr>
+        <tr><td class="tdWidth">工作 : </td> <td>{{ work }} </td> </tr>
+        <tr><td class="tdWidth">恋情 : </td> <td>{{ love }} </td> </tr>
+        <tr><td class="tdWidth">财运 : </td> <td>{{ money }} </td> </tr>
+        <tr><td class="tdWidth">整体 : </td> <td>{{ all }} </td> </tr>
+  </script> 
+  <!-- 年模板 -->
+  <script type='text/html' id="tplYear">
+     
+        <tr><td class="tdWidth">星座 : </td> <td>{{ name }} </td> </tr>
+        <tr><td class="tdWidth">时间 : </td> <td>{{ year }} 年</td> </tr>
+        <tr><td class="tdWidth">健康 : </td> 
+        {{ each health as value }}
+          <td>
+        {{ value }} 
+        </td> 
+        {{ /each }}
+        
+        </tr>
+        <tr><td class="tdWidth">工作 : </td>{{ each career as value }}
+          <td>
+        {{ value }} 
+        </td> 
+        {{ /each }}</tr>
+        <tr><td class="tdWidth">恋情 : </td> {{ each love as value }}
+          <td>
+        {{ value }} 
+        </td> 
+        {{ /each }}</tr>
+        <tr><td class="tdWidth">财务 : </td> {{ each finance as value }}
+          <td>
+        {{ value }} 
+        </td> 
+        {{ /each }} </tr>
+        <tr><td class="tdWidth">整体 : </td> 
+
+          <td>
+
+         {{ each mima.info as value }}
+          <strong>{{  value }} </strong>
+         {{ /each }}
+          <br>
+          {{ each mima.text as value }}
+          <span>  {{ value }}   </span>
+         {{ /each }}
+
+        </td> 
+        </tr>
+  </script> 
+  <script src='static/js/jquery.js'></script>
+  <script src='static/js/template.js'></script>
+  <script src='static/js/main.js'></script>
+  
+  </body>
+</html>

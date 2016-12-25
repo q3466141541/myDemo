@@ -1,0 +1,28 @@
+
+.myCons h3{
+    margin : 0 auto;
+    text-align:  center;
+
+}
+
+.myCons form  {
+
+    width: 400px;
+    margin : 30px auto;
+}
+
+.panel .panel-body{
+    padding: 0;
+}
+
+
+
+.tdWidth{
+    width: 15%;
+    
+    text-align: center
+}
+
+.tdwid {
+    width: 100%;
+}
