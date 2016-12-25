@@ -30,9 +30,21 @@ server.on('request' , function(req , response){
         })
 
 
-    } else if(pathname.startsWith('/static/')){
+    } else if(pathname.startsWith('/static')){
         fs.readFile( path.join(__dirname , req.pathname) , function(err , data){
-                // console.log(req.pathname);
+                console.log(req.pathname);
+                if(err){
+                    throw err
+                }
+                response.writeHead(200, {
+                    'Content-Type' : mime.lookup(req.pathname)
+                })    
+
+                response.end(data);
+        })
+    }else if(pathname.startsWith('/node_module')){
+        fs.readFile( path.join(__dirname , req.pathname) , function(err , data){
+                console.log(req.pathname);
                 if(err){
                     throw err
                 }
