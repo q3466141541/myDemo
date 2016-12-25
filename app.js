@@ -66,6 +66,7 @@ server.on('request' , function(req , response){
                     type : type
                 }
                 result  = JSON.stringify(result);
+                console.log(result)
                 response.end(result);
             })
             
@@ -82,5 +83,6 @@ server.on('request' , function(req , response){
 
 
 server.listen(3000, function(){
-    console.log('running')
+    console.log('demo running in 127.0.0.1:3000')
+    console.log('welcome to test this small demo!')
 })

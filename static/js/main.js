@@ -22,18 +22,20 @@
               var infoData = JSON.parse(data.info);
               var strObj = '';
               //根据type 来返回不同的模板
-              if(infoType == 'today' || infoType == 'tomorrow'){
-                  console.log(infoData)
+              if( (infoType == 'today' || infoType == 'tomorrow') && ( !infoData.error_code)){
+                  // console.log(infoData)
                    strObj = template('tplDay' , infoData)
-              } else if(infoType == 'week' || infoType == 'nextweek'){
+              } else if( (infoType == 'week' || infoType == 'nextweek')  && ( !infoData.error_code) ){
                 console.log(infoData)
                    strObj = template('tplWeek' , infoData)
-              }else if( infoType == 'month'){
-                console.log(infoData)
+              }else if( (infoType == 'month')  && ( !infoData.error_code)){
+                // console.log(infoData)
                   strObj = template('tplMonth' , infoData)
-              } else if(infoType == 'year'){
-                console.log(infoData)
+              } else if((infoType == 'year')  && ( !infoData.error_code)){
+                // console.log(infoData)
                   strObj = template('tplYear' , infoData)
+              } else if(  infoData.error_code ){
+                  strObj = '信息错误,请稍后尝试!'
               }
 
               //渲染内容
