@@ -29,7 +29,6 @@ server.on('request' , function(req , response){
             response.end(data);
         })
 
-
     } else if(pathname.startsWith('/static')){
         fs.readFile( path.join(__dirname , req.pathname) , function(err , data){
                 console.log(req.pathname);
@@ -39,7 +38,6 @@ server.on('request' , function(req , response){
                 response.writeHead(200, {
                     'Content-Type' : mime.lookup(req.pathname)
                 })    
-
                 response.end(data);
         })
     }else if(pathname.startsWith('/node_module')){
@@ -51,37 +49,27 @@ server.on('request' , function(req , response){
                 response.writeHead(200, {
                     'Content-Type' : mime.lookup(req.pathname)
                 })    
-
                 response.end(data);
         })
     } else if(pathname === '/search'){
-        // var a = res;
         var cont = queryString.stringify(req.query);
         var type = req.query.type
         var urladress = 'http://web.juhe.cn:8080/constellation/getAll?' + cont + '&key=185be67b3945243d4b3bd73eacde38fe'
         
         http.get( urladress, function(res){
-            // console.log('status' + res.statusCode);
-            // console.log('head' + JSON.stringify(res.headers));
-
             var info = '';
             res.setEncoding('utf8');
             res.on('data' , function(chunk){
                 info+= chunk
             })
-
             res.on('end' , function(){
-
                 var result = {
-
                     info : info ,
                     type : type
                 }
                 result  = JSON.stringify(result);
-                console.log(result)
                 response.end(result);
             })
-            
         }).on('error' , function(e){
             console.log('error : ' + e.message)
         })
