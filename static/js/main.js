@@ -21,6 +21,7 @@
               var infoType =  data.type;
               var infoData = JSON.parse(data.info);
               var strObj = '';
+              console.log(infoData);
               //根据type 来返回不同的模板
               if( (infoType == 'today' || infoType == 'tomorrow') && ( !infoData.error_code)){
                   // console.log(infoData)
