@@ -6,9 +6,13 @@
 }
 
 .myCons form  {
-
-    width: 400px;
     margin : 30px auto;
+}
+
+
+.myCons form .title-content{
+    width: 400px;
+    margin : 0  auto;
 }
 
 .panel .panel-body{

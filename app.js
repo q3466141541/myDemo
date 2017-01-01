@@ -29,7 +29,30 @@ server.on('request' , function(req , response){
             response.end(data);
         })
 
-    } else if(pathname.startsWith('/static')){
+    } else if(pathname === '/flappy_bird'){
+        fs.readFile('views/flappy_bird/index.html' , function(err , data){
+                // console.log(req.pathname);
+                if(err){
+                    throw err
+                }
+                response.writeHead(200, {
+                    'Content-Type' : 'text/html;charset=utf-8'
+                })    
+                response.end(data);
+        })
+
+    }else if(pathname.startsWith('/js')){
+        fs.readFile( path.join(__dirname , req.pathname) , function(err , data){
+                // console.log(req.pathname);
+                if(err){
+                    throw err
+                }
+                response.writeHead(200, {
+                    'Content-Type' : mime.lookup(req.pathname)
+                })    
+                response.end(data);
+        })
+    }else if(pathname.startsWith('/static')){
         fs.readFile( path.join(__dirname , req.pathname) , function(err , data){
                 // console.log(req.pathname);
                 if(err){

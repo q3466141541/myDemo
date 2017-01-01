@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<canvas style="border: 2px solid lightgreen" width="800" height="600"></canvas>
+<script src="js/common/util.js"></script>
+<script src="js/common/loadImage.js"></script>
+<script src='js/roles/sky.js'></script>
+<script src="js/roles/land.js"></script>
+<script src="js/roles/bird.js"></script>
+<script src="js/roles/time.js"></script>
+<script>
+    var cvs  = document.querySelector('canvas');
+    var ctx = cvs.getContext('2d');
+
+    loadImage({
+        bird: './imgs/birds.png',
+        land: './imgs/land.png',
+        pipeDown: './imgs/pipeDown.png',
+        pipeUp: './imgs/pipeUp.png',
+        sky: './imgs/sky.png'
+    },function(m){
+        var sky = new Sky({ctx : ctx , img : m.sky});
+        var sky1 = new Sky({ctx : ctx , img : m.sky});
+
+        var land = new Land({ctx : ctx , img : m.land})
+        var land1 = new Land({ctx : ctx , img : m.land})
+        var land2 = new Land({ctx : ctx , img : m.land})
+        var land3 = new Land({ctx : ctx , img : m.land})
+
+
+        var bird = new Bird({ctx : ctx , img : m.bird, widthFrame : 3 , heightFrame : 1})
+
+        var timer = new Timer({
+            ctx : ctx,
+            color : 'red'
+        });
+        var lastTime;
+        setInterval(function(){
+
+            lastTime = lastTime ? lastTime : Date.now();
+            var gameTime = Date.now();
+            var delayTime = (gameTime - lastTime ) /1000;
+            lastTime = gameTime;
+            ctx.clearRect( 0, 0, cvs.width, cvs.height );
+            sky.draw();
+            sky.update(delayTime);
+            sky1.draw();
+            sky1.update(delayTime);
+
+
+            land.draw();
+            land.update(delayTime);
+            land1.draw();
+            land1.update(delayTime);
+            land2.draw();
+            land2.update(delayTime);
+            land3.draw();
+            land3.update(delayTime);
+
+            bird.draw();
+            bird.update(delayTime);
+
+            timer.draw();
+            timer.update(delayTime);
+        },50);
+    })
+
+</script>
+</body>
+</html>
